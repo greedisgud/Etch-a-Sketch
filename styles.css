@@ -22,3 +22,8 @@ section h1{
     display: grid;
 }
 
+.box{
+    border: 1px solid black;
+}
+
+
