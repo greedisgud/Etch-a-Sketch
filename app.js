@@ -6,6 +6,7 @@ let resetBtn = document.createElement("button");
 let btnContainer = document.querySelector(".buttons");
 
 
+
 function createGrid(cols, rows){
     for(let i = 0; i < (cols*rows); i ++){
         const div = document.createElement("div");
@@ -46,4 +47,21 @@ function rgbColor(){
 }
 
 rgbColor();
+
+function reset(){
+    const boxs = document.querySelectorAll(".box")
+    resetBtn.textContent = "Clear Grid";
+    resetBtn.addEventListener("click", () => {
+        boxs.forEach(box => box.style.background = "white")
+    })
+    btnContainer.appendChild(resetBtn).classList.add("button")
+}
+
+reset();
+
+
+
+
+
+
 
