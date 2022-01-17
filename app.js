@@ -8,15 +8,38 @@ let btnContainer = document.querySelector(".buttons");
 
 
 function createGrid(cols, rows){
-    for(let i = 0; i < (cols*rows); i ++){
+    for(let i = 0; i < (cols*rows); i++){
         const div = document.createElement("div");
+        div.style.border = "1px solid black"
         containter.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
         containter.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
         containter.appendChild(div).classList.add("box");
     }
 }
 
-createGrid(16,16);
+function getUserSize(){
+    gridSize.textContent = "Grid Size"
+    gridSize.addEventListener("click", () => {
+        let userInput = prompt("Enter a grid size (n x n)");
+        if (userInput === null || userInput < 1) {
+            createGrid(16,16);
+            reset();
+            blackColor();
+            rgbColor();
+        }
+        else{
+            createGrid(userInput, userInput);
+            reset();
+            blackColor();
+            rgbColor();
+        }
+    })
+    btnContainer.appendChild(gridSize).classList.add("button");
+}
+
+getUserSize();
+
+
 
 function blackColor(){
     const boxs = document.querySelectorAll(".box");
@@ -50,14 +73,15 @@ rgbColor();
 
 function reset(){
     const boxs = document.querySelectorAll(".box")
-    resetBtn.textContent = "Clear Grid";
+    resetBtn.textContent = "Reset";
     resetBtn.addEventListener("click", () => {
-        boxs.forEach(box => box.style.background = "white")
+        window.location.reload();
     })
     btnContainer.appendChild(resetBtn).classList.add("button")
 }
 
 reset();
+
 
 
 
